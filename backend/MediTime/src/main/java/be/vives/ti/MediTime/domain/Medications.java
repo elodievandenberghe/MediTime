@@ -3,19 +3,19 @@ package be.vives.ti.MediTime.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Medications")
+@Table(name= "medications")
 public class Medications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name= "id")
     private Integer id;
-    @Column(name="Name")
+    @Column(name= "name")
     private String name;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="CateogryId", referencedColumnName = "Id")
+    @JoinColumn(name="category_id", referencedColumnName = "id")
     private Categories categories;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="DosingId", referencedColumnName = "Id")
+    @JoinColumn(name= "dosing_id", referencedColumnName = "id")
     private Dosing dosing;
 
     public Medications() {}

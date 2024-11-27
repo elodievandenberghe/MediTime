@@ -5,19 +5,19 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Users")
+@Table(name= "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name= "id")
     private Integer id;
-    @Column(name="Email")
+    @Column(name= "email")
     private String email;
-    @Column(name="Name")
+    @Column(name= "name")
     private String name;
-    @Column(name="LastName")
+    @Column(name= "last_name")
     private String lastName;
-    @Column(name="Password")
+    @Column(name= "password")
     private String password;
     @OneToMany(mappedBy="users", cascade = CascadeType.ALL)
     private List<UserMedications> medications;

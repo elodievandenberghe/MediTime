@@ -1,11 +1,8 @@
 package be.vives.ti.MediTime.service;
 
-import be.vives.ti.MediTime.domain.Medications;
 import be.vives.ti.MediTime.domain.UserMedications;
-import be.vives.ti.MediTime.domain.Users;
 import be.vives.ti.MediTime.repository.MedicationsRepository;
 import be.vives.ti.MediTime.repository.UserMedicationsRepository;
-import be.vives.ti.MediTime.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +14,6 @@ public class UserMedicationsService {
 
     @Autowired
     private UserMedicationsRepository userMedicationsRepository;
-
-    @Autowired
-    private UsersRepository usersRepository;
 
     @Autowired
     private MedicationsRepository medicationsRepository;
@@ -48,6 +42,12 @@ public class UserMedicationsService {
 
     // Update UserMedications by ID
     public UserMedications updateUserMedications(Integer id, UserMedications updatedUserMedications) {
+        if(userMedicationsRepository.findById(updatedUserMedications.getUsers().getId()).isEmpty()) {
+            throw new RuntimeException("User id doesn't exist");
+        }
+        if(medicationsRepository.findById(updatedUserMedications.getMedications().getId()).isEmpty()) {
+            throw new RuntimeException("Medications id doesn't exist");
+        }
         return userMedicationsRepository.findById(id).map(userMedications -> {
                 userMedications.setMedications(updatedUserMedications.getMedications());
                 userMedications.setUsers(updatedUserMedications.getUsers());

@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Dosing")
+@Table(name= "dosing")
 public class Dosing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name= "id")
     private Integer id;
 
-    @Column(name="DosingType")
+    @Column(name= "dosing_type")
     private String dosingType;
 
     @OneToMany(mappedBy="dosing")

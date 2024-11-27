@@ -3,23 +3,21 @@ package be.vives.ti.MediTime.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
-import java.util.BitSet;
-import java.util.Date;
 
-    @Entity
-    @Table(name="MedicationSchedule")
+@Entity
+    @Table(name= "medication_schedule")
     public class MedicationSchedule {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name="Id")
+        @Column(name= "id")
         private Integer id;
         @ManyToOne(fetch = FetchType.LAZY)
 
-        @JoinColumn(name="UserMedicationsId", referencedColumnName = "Id")
+        @JoinColumn(name="user_medication_id", referencedColumnName = "id")
         private UserMedications userMedications;
-        @Column(name="WeekMask")
+        @Column(name= "week_mask")
         private Byte weekMask;
-        @Column(name="Time")
+        @Column(name= "time")
         private LocalTime time;
 
         public MedicationSchedule() {}

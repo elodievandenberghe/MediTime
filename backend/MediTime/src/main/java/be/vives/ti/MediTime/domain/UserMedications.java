@@ -5,17 +5,17 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="UserMedicatons")
+@Table(name="user_medications")
 public class UserMedications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name="id")
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="UserId", referencedColumnName = "Id")
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     private Users users;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="MedicationId", referencedColumnName = "Id")
+    @JoinColumn(name="medication_id", referencedColumnName = "id")
     private Medications medications;
     @OneToMany(mappedBy="userMedications", cascade = CascadeType.ALL)
     private List<MedicationSchedule> schedule;
