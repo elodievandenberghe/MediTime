@@ -15,9 +15,9 @@ public class Dosing {
     @Column(name="DosingType")
     private String dosingType;
 
-    @OneToMany(mappedBy="Medications")
+    @OneToMany(mappedBy="dosing")
     private List<Medications> medications;
-    
+
     public Dosing() {}
     public Dosing(String dosingType) {
         this.dosingType = dosingType;

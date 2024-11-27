@@ -19,7 +19,7 @@ public class Users {
     private String lastName;
     @Column(name="Password")
     private String password;
-    @OneToMany(mappedBy="Users")
+    @OneToMany(mappedBy="users", cascade = CascadeType.ALL)
     private List<UserMedications> medications;
 
     public Users() {}
@@ -39,5 +39,4 @@ public class Users {
     public void setLastName(String lastName) {this.lastName = lastName;}
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
-
 }

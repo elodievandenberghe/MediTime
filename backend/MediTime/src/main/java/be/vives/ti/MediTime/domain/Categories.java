@@ -14,7 +14,7 @@ public class Categories {
     @Column
     private String category;
 
-    @OneToMany(mappedBy="Medications")
+    @OneToMany(mappedBy="categories")
     private List<Medications> medications;
 
     public Categories() {}

@@ -11,10 +11,10 @@ public class Medications {
     private Integer id;
     @Column(name="Name")
     private String name;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="CateogryId", referencedColumnName = "Id")
     private Categories categories;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="DosingId", referencedColumnName = "Id")
     private Dosing dosing;
 
