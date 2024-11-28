@@ -1,6 +1,7 @@
 package be.vives.ti.MediTime.controller;
 import be.vives.ti.MediTime.domain.Categories;
 import be.vives.ti.MediTime.service.CategoriesService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,12 +30,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Categories createCategory(@RequestBody Categories category) {
+    public Categories createCategory(@Valid @RequestBody Categories category) {
         return categoriesService.createCategory(category);
     }
 
     @PutMapping("/{id}")
-    public Categories updateCategory(@PathVariable("id") Integer id,
+    public Categories updateCategory(@PathVariable("id") Integer id, @Valid
                                                      @RequestBody Categories updatedCategory) {
         return categoriesService.updateCategory(id, updatedCategory);
     }

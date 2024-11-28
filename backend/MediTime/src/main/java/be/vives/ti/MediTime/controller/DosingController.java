@@ -2,6 +2,7 @@ package be.vives.ti.MediTime.controller;
 
 import be.vives.ti.MediTime.domain.Dosing;
 import be.vives.ti.MediTime.service.DosingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,13 +31,13 @@ public class DosingController {
     }
 
     @PostMapping
-    public Dosing createDosing(@RequestBody Dosing dosing) {
+    public Dosing createDosing(@Valid @RequestBody Dosing dosing) {
         return dosingService.createDosing(dosing);
     }
 
     @PutMapping("/{id}")
     public Dosing updateDosing(@PathVariable("id") Integer id,
-                                               @RequestBody Dosing updatedDosing) {
+                                               @Valid @RequestBody Dosing updatedDosing) {
         return dosingService.updateDosing(id, updatedDosing);
     }
 

@@ -2,6 +2,7 @@ package be.vives.ti.MediTime.controller;
 
 import be.vives.ti.MediTime.domain.MedicationSchedule;
 import be.vives.ti.MediTime.service.MedicationScheduleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +34,14 @@ public class MedicationScheduleController {
 
     // Create new medication schedule
     @PostMapping
-    public MedicationSchedule createMedicationSchedule(@RequestBody MedicationSchedule medicationSchedule) {
+    public MedicationSchedule createMedicationSchedule(@Valid @RequestBody MedicationSchedule medicationSchedule) {
         return medicationScheduleService.createMedicationSchedule(medicationSchedule);
     }
 
     // Update medication schedule by ID
     @PutMapping("/{id}")
     public MedicationSchedule updateMedicationSchedule(@PathVariable("id") Integer id,
-                                                       @RequestBody MedicationSchedule updatedMedicationSchedule) {
+                                                       @Valid @RequestBody MedicationSchedule updatedMedicationSchedule) {
         return medicationScheduleService.updateMedicationSchedule(id, updatedMedicationSchedule);
     }
 

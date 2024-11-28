@@ -1,21 +1,30 @@
 package be.vives.ti.MediTime.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name= "medications")
 public class Medications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "id")
+    @Column(name = "id")
     private Integer id;
-    @Column(name= "name")
+
+    @NotNull(message = "Medication name cannot be null")
+    @Size(min = 1, max = 50, message = "Medication name must be between 1 and 50 characters")
+    @Column(name = "name")
     private String name;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id", referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @NotNull(message = "Category cannot be null")
     private Categories categories;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "dosing_id", referencedColumnName = "id")
+    @JoinColumn(name = "dosing_id", referencedColumnName = "id")
+    @NotNull(message = "Dosing cannot be null")
     private Dosing dosing;
 
     public Medications() {}

@@ -1,6 +1,7 @@
 package be.vives.ti.MediTime.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -9,15 +10,20 @@ import java.util.List;
 public class UserMedications {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @NotNull(message = "User cannot be null")  // Ensure the user is not null
     private Users users;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="medication_id", referencedColumnName = "id")
+    @JoinColumn(name = "medication_id", referencedColumnName = "id")
+    @NotNull(message = "Medication cannot be null")  // Ensure the medication is not null
     private Medications medications;
-    @OneToMany(mappedBy="userMedications", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "userMedications", cascade = CascadeType.ALL)
     private List<MedicationSchedule> schedule;
 
     public UserMedications() {}

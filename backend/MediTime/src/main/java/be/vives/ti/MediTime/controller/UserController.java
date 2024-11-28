@@ -3,6 +3,7 @@ package be.vives.ti.MediTime.controller;
 import be.vives.ti.MediTime.domain.Users;
 import be.vives.ti.MediTime.service.UserService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,13 +29,13 @@ public class UserController {
     }
 
     @PostMapping
-    public Users createUser(@RequestBody Users user){
+    public Users createUser(@Valid @RequestBody Users user){
         userService.createUser(user);
         return user;
     }
 
     @PutMapping("/{id}")
-    public Users updateUser(@PathVariable("id") int id, @RequestBody Users updatedUser) {
+    public Users updateUser(@PathVariable("id") int id, @Valid @RequestBody Users updatedUser) {
         return userService.updateUser(id, updatedUser);
     }
 
