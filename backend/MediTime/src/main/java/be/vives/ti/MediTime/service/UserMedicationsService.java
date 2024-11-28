@@ -4,6 +4,8 @@ import be.vives.ti.MediTime.domain.UserMedications;
 import be.vives.ti.MediTime.repository.MedicationsRepository;
 import be.vives.ti.MediTime.repository.UserMedicationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +22,9 @@ public class UserMedicationsService {
 
     public UserMedicationsService() {}
 
-    public List<UserMedications> getAllUserMedications() {
-        return userMedicationsRepository.findAll();
+    public Page<UserMedications> getAllUserMedications(Pageable pageable) {
+        return userMedicationsRepository.findAll(pageable);
     }
-
     // Get UserMedications by Id
     public Optional<UserMedications> getUserMedicationsById(Integer id) {
         return userMedicationsRepository.findById(id);

@@ -1,8 +1,11 @@
 package be.vives.ti.MediTime.service;
 
+import be.vives.ti.MediTime.domain.Categories;
 import be.vives.ti.MediTime.domain.Dosing;
 import be.vives.ti.MediTime.repository.DosingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +20,12 @@ public class DosingService {
     // Constructor
     public DosingService() {}
 
-    // Get all Dosing types
-    public List<Dosing> getAllDosing() {
-        return dosingRepository.findAll();
-    }
-
-    // Get Dosing by Id
     public Optional<Dosing> getDosingById(Integer id) {
         return dosingRepository.findById(id);
+    }
+
+    public Page<Dosing> getAllDosing(Pageable pageable) {
+        return dosingRepository.findAll(pageable);
     }
 
     // Create a new Dosing

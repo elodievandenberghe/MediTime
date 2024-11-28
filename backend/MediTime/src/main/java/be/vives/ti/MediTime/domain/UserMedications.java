@@ -27,8 +27,7 @@ public class UserMedications {
     private List<MedicationSchedule> schedule;
 
     public UserMedications() {}
-    public UserMedications(Integer id, Users users, Medications medications) {
-        this.id = id;
+    public UserMedications(Users users, Medications medications) {
         this.users = users;
         this.medications = medications;
     }

@@ -1,11 +1,14 @@
 package be.vives.ti.MediTime.service;
 
 
+import be.vives.ti.MediTime.domain.Categories;
 import be.vives.ti.MediTime.domain.Medications;
 import be.vives.ti.MediTime.repository.CategoryRepository;
 import be.vives.ti.MediTime.repository.DosingRepository;
 import be.vives.ti.MediTime.repository.MedicationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,10 +30,9 @@ public class MedicationsService {
     public MedicationsService() {}
 
     // Get all Medications
-    public List<Medications> getAllMedications() {
-        return medicationsRepository.findAll();
+    public Page<Medications> getAllMedications(Pageable pageable) {
+        return medicationsRepository.findAll(pageable);
     }
-
     // Get Medications by Id
     public Optional<Medications> getMedicationsById(Integer id) {
         return medicationsRepository.findById(id);

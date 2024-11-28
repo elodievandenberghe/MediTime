@@ -5,8 +5,10 @@ import be.vives.ti.MediTime.domain.Categories;
 import be.vives.ti.MediTime.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import org.springframework.data.domain.Pageable;import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +18,8 @@ public class CategoriesService {
     private CategoryRepository categoriesRepository;
 
     public CategoriesService() {}
-    public List<Categories> getAllCategories() {
-        return categoriesRepository.findAll();
+    public Page<Categories> getAllCategories(Pageable pageable) {
+        return categoriesRepository.findAll(pageable);
     }
     public Optional<Categories> getCategoryById(Integer id) {
         return categoriesRepository.findById(id);

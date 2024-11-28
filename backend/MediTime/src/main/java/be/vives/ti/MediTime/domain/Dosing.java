@@ -19,7 +19,7 @@ public class Dosing {
     @Column(name = "dosing_type")
     private String dosingType;
 
-    @OneToMany(mappedBy = "dosing")
+    @OneToMany(mappedBy = "dosing", cascade = CascadeType.REMOVE)
     private List<Medications> medications;
 
     // Default constructor

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 @Configuration
 public class MediTimeApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MediTimeApplication.class, args);
 	}

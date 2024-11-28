@@ -1,6 +1,8 @@
 package be.vives.ti.MediTime.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -11,13 +13,15 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id")
     private Integer id;
-    @Column(name= "email")
+    @Column(name= "email", unique = true)
+    @NotNull(message = "Email cannot be null")
+    @Email
     private String email;
-    @Column(name= "name")
+    @Column(name= "name", nullable = false)
     private String name;
-    @Column(name= "last_name")
+    @Column(name= "last_name", nullable = false)
     private String lastName;
-    @Column(name= "password")
+    @Column(name= "password", nullable = false)
     private String password;
     @OneToMany(mappedBy="users", cascade = CascadeType.ALL)
     private List<UserMedications> medications;

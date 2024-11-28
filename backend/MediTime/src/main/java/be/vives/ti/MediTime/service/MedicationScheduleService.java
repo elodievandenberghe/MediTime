@@ -1,9 +1,12 @@
 package be.vives.ti.MediTime.service;
 
+import be.vives.ti.MediTime.domain.Categories;
 import be.vives.ti.MediTime.domain.MedicationSchedule;
 import be.vives.ti.MediTime.repository.MedicationScheduleRepository;
 import be.vives.ti.MediTime.repository.UserMedicationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,18 +23,14 @@ public class MedicationScheduleService {
 
     public MedicationScheduleService() {}
 
-    public List<MedicationSchedule> getAllMedicationSchedules() {
-        return medicationScheduleRepository.findAll();
+    public Page<MedicationSchedule> getAllMedicationSchedules(Pageable pageable) {
+        return medicationScheduleRepository.findAll(pageable);
     }
-
     public Optional<MedicationSchedule> getMedicationScheduleById(Integer id) {
         return medicationScheduleRepository.findById(id);
     }
 
     public MedicationSchedule createMedicationSchedule(MedicationSchedule medicationSchedule) {
-        if (userMedicationsRepository.findById(medicationSchedule.getUserMedications().getId()).isEmpty()) {
-            throw new RuntimeException("UserMedications id doesn't exist");
-        }
         return medicationScheduleRepository.save(medicationSchedule);
     }
     public MedicationSchedule updateMedicationSchedule(Integer id, MedicationSchedule updatedMedicationSchedule) {
@@ -43,10 +42,7 @@ public class MedicationScheduleService {
         }).orElseThrow(() -> new RuntimeException("MedicationSchedule with ID " + id + " not found"));
     }
     public void deleteMedicationSchedule(Integer id) {
-        if (medicationScheduleRepository.existsById(id)) {
             medicationScheduleRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("MedicationSchedule with ID " + id + " not found");
-        }
+
     }
 }
